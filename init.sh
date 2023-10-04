@@ -17,7 +17,7 @@ function setup() {
     dirs=("${dirs[@]}" "Plugins")
 
     for var in "${dirs[@]}"; do
-        mkdir Assets/$1/"$var"
+        mkdir -p Assets/$1/"$var"
     done
 
 cat << EOT > .gitignore
@@ -118,15 +118,11 @@ EOT
 }
 
 if [ -e Assets ]; then
-  echo -p "Enter this project name:" dir
+  echo "Enter this project name:"
+  read dir
   echo "Setup .gitignore and Asset directories."
-  setup dir
+  setup "$dir"
   echo "done."
   echo ""
-  echo "You should setup manually folloing steps."
-  echo ""
-  echo "1. Open Inspector [Edit] -> [Project Settings] -> [Editor]"
-  echo "2. [Version Control] Mode to [Visible Meta Files]"
-  echo "3. [Asset Serialization] Mode to [Force Text]"
-  echo ""
+
 fi
